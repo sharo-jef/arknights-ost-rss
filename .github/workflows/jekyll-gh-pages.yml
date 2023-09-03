@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+  workflow_call:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

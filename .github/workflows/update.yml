@@ -25,4 +25,16 @@ jobs:
         run: |
           curl -LO https://sharo-jef.github.io/arknights-ost-rss/rss.xml
           npx fast-xml-parser rss.xml -o rss.json
-          cat rss.json
+          jq -r '.rss.channel.item[].title' | sort | tee rss.txt
+      - name: Fetch API data
+        run: curl -LO https://monster-siren.hypergryph.com/api/songs | jq -r '.data.list[].name' | sort | tee api.txt
+      - name: Compare
+        id: compare
+        run: |
+          set +e
+          diff rss.txt api.txt
+          echo "result=$?" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: update
+    if: ${{ needs.update.outputs.result == 1 }}
+    uses: ./.github/workflows/jekyll-gh-pages.yml
