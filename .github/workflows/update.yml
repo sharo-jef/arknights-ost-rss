@@ -45,4 +45,4 @@ jobs:
     steps:
       - name: Debug
         run: |
-          echo "${{ needs.update.outputs.result }}"
+          echo "${{ needs.update.outputs }}"
