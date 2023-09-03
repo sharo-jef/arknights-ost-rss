@@ -39,3 +39,10 @@ jobs:
     needs: update
     if: ${{ needs.update.outputs.result == 1 }}
     uses: ./.github/workflows/jekyll-gh-pages.yml
+  debug:
+    needs: update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        run: |
+          echo "${{ needs.update.outputs.result }}"
