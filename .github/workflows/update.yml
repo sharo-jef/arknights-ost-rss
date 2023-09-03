@@ -50,13 +50,7 @@ jobs:
           fetch-depth: 0
       - name: Update last_update.md
         run: |
-          echo "---
-          layout: default
-          title: Last update
-          nav_order: 2
-          ---
-
-          # Last update
+          echo "# Last update
 
           \`$(date)\`
           " > last_update.md
