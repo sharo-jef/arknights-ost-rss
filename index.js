@@ -18,24 +18,6 @@ export const handler = async () => {
   for (const song of songs) {
     const detail = await axios.get(`${BASE_URL}/api/song/${song.cid}`).then(res => res.data.data);
     const album = albums.find(entry => entry.cid === detail.albumCid);
-    console.log({
-      guid: song.cid,
-      title: song.name,
-      description: `Artists: ${detail.artists.join(', ')}
-  ${album ? `Album: ${album.name}\n` : ''}`,
-      custom_elements: [
-        { sourceUrl: detail.sourceUrl ?? '' },
-        { lyricUrl: detail.lyricUrl ?? '' },
-        { mvUrl: detail.mvUrl ?? '' },
-        { mvCoverUrl: detail.mvCoverUrl ?? '' },
-        { artists: detail.artists.join(', ') },
-        { webUrl: `${BASE_URL}/music/${detail.cid}` },
-        { albumName: album ? album.name : '' },
-        { albumCid: album ? album.cid : '' },
-        { albumCoverUrl: album ? album.coverUrl : '' },
-        { albumArtists: album ? album.artistes.join(', ') : '' },
-      ],
-    });
     feed.item({
       guid: song.cid,
       title: song.name,
