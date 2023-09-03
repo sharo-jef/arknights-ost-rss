@@ -37,7 +37,9 @@ jobs:
           diff rss.txt api.txt
           echo "result=$?" >> "$GITHUB_OUTPUT"
   deploy:
-    needs: update
+    needs:
+      - update
+      - update_last_update_data
     if: ${{ needs.update.outputs.result == 1 }}
     uses: ./.github/workflows/jekyll-gh-pages.yml
   update_last_update_data:
