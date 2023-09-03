@@ -28,7 +28,6 @@ jobs:
           curl -LO https://sharo-jef.github.io/arknights-ost-rss/rss.xml
           npx fast-xml-parser rss.xml -o rss.json
           jq -r '.rss.channel.item[].title' | sort | tee rss.txt
-          echo hoge >> rss.txt
       - name: Fetch API data
         run: curl -LO https://monster-siren.hypergryph.com/api/songs | jq -r '.data.list[].name' | sort | tee api.txt
       - name: Compare
