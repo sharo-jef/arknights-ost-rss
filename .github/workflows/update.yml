@@ -50,9 +50,21 @@ jobs:
           fetch-depth: 0
       - name: Update last_update.md
         run: |
-          echo "# Last update
+          echo "---
+          layout: default
+          title: Last update
+          nav_order: 2
+          ---
+
+          # Last update
 
           \`$(date)\`
           " > last_update.md
       - name: Show
         run: cat last_update.md
+      - name: Push
+        run: |
+          git config --global user.name 'GitHub Actions [bot]'
+          git add last_update.md
+          git commit -m 'Update last_update.md'
+          git push

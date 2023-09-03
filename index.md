@@ -1,3 +1,9 @@
+---
+layout: home
+title: Arknights OST RSS
+nav_order: 1
+---
+
 # Arknights OST RSS
 
 RSS for Monster Siren OST.
