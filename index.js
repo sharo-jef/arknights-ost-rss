@@ -22,16 +22,18 @@ for (const song of songs) {
     title: song.name,
     description: `Artists: ${detail.artists.join(', ')}
 ${album ? `Album: ${album.name}\n` : ''}`,
-    sourceUrl: detail.sourceUrl ?? '',
-    lyricUrl: detail.lyricUrl ?? '',
-    mvUrl: detail.mvUrl ?? '',
-    mvCoverUrl: detail.mvCoverUrl ?? '',
-    artists: detail.artists.join(', '),
-    webUrl: `${BASE_URL}/music/${detail.cid}`,
-    albumName: album ? album.name : '',
-    albumCid: album ? album.cid : '',
-    albumCoverUrl: album ? album.coverUrl : '',
-    albumArtists: album ? album.artistes.join(', ') : '',
+    custom_elements: [
+      { sourceUrl: detail.sourceUrl ?? '' },
+      { lyricUrl: detail.lyricUrl ?? '' },
+      { mvUrl: detail.mvUrl ?? '' },
+      { mvCoverUrl: detail.mvCoverUrl ?? '' },
+      { artists: detail.artists.join(', ') },
+      { webUrl: `${BASE_URL}/music/${detail.cid}` },
+      { albumName: album ? album.name : '' },
+      { albumCid: album ? album.cid : '' },
+      { albumCoverUrl: album ? album.coverUrl : '' },
+      { albumArtists: album ? album.artistes.join(', ') : '' },
+    ],
   });
 }
 
