@@ -39,11 +39,11 @@ jobs:
   deploy:
     needs:
       - update
-      - update_last_update_data
     if: ${{ needs.update.outputs.result == 1 }}
     uses: ./.github/workflows/jekyll-gh-pages.yml
-  update_last_update_data:
+  update_last_update_date:
     needs: update
+    if: ${{ needs.update.outputs.result == 0 }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
