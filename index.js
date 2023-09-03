@@ -14,9 +14,12 @@ const feed = new RSS({
   language: 'zh-cn',
 });
 
+console.log('Fetching: albums');
 const albums = await axios.get(`${BASE_URL}/api/albums`).then(res => res.data.data);
+console.log('Fetching: songs');
 const songs = await axios.get(`${BASE_URL}/api/songs`).then(res => res.data.data.list);
 for (const song of songs) {
+  console.log(`Fetching: ${song.name}`);
   const detail = await axios.get(`${BASE_URL}/api/song/${song.cid}`).then(res => res.data.data);
   const album = albums.find(entry => entry.cid === detail.albumCid);
   feed.item({
@@ -40,5 +43,7 @@ for (const song of songs) {
     ],
   });
 }
+console.log('Done!');
 
 await writeFile('./_site/rss.xml', feed.xml({ indent: true }));
+console.log('Wrote to: ./_site/rss.xml');
