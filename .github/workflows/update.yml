@@ -64,8 +64,8 @@ jobs:
         run: cat last_update.md
       - name: Push
         run: |
-          git config user.name 'GitHub Actions [bot]'
-          git add last_update.md
+          git config --local user.name "github-actions[bot]"
+          git add .
           git commit -m 'Update last_update.md'
           git push
         env:
