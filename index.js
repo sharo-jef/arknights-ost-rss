@@ -24,6 +24,8 @@ for (const song of songs) {
     title: song.name,
     description: `Artists: ${detail.artists.join(', ')}
   ${album ? `Album: ${album.name}\n` : ''}`,
+    url: `${BASE_URL}/music/${detail.cid}`,
+    author: detail.artists.join(', '),
     custom_elements: [
       { sourceUrl: detail.sourceUrl ?? '' },
       { lyricUrl: detail.lyricUrl ?? '' },
