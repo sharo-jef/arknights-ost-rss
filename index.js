@@ -16,8 +16,10 @@ const feed = new RSS({
 
 console.log('Fetching: albums');
 const albums = await axios.get(`${BASE_URL}/api/albums`).then(res => res.data.data);
+console.log(`Fetched: ${albums.length} albums`);
 console.log('Fetching: songs');
 const songs = await axios.get(`${BASE_URL}/api/songs`).then(res => res.data.data.list);
+console.log(`Fetched: ${songs.length} songs`);
 for (const song of songs) {
   console.log(`Fetching: ${song.name}`);
   const detail = await axios.get(`${BASE_URL}/api/song/${song.cid}`).then(res => res.data.data);
@@ -25,8 +27,8 @@ for (const song of songs) {
   feed.item({
     guid: song.cid,
     title: song.name,
-    description: `Artists: ${detail.artists.join(', ')}
-  ${album ? `Album: ${album.name}\n` : ''}`,
+    description: `Artists: ${detail.artists.join(', ')}<br />
+${album ? `Album: ${album.name}<br />` : ''}`,
     url: `${BASE_URL}/music/${detail.cid}`,
     author: detail.artists.join(', '),
     custom_elements: [
