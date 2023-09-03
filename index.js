@@ -39,4 +39,4 @@ for (const song of songs) {
   });
 }
 
-await writeFile('./docs/rss.xml', feed.xml({ indent: true }));
+await writeFile('./_site/rss.xml', feed.xml({ indent: true }));
