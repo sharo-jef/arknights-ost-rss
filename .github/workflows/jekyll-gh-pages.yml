@@ -23,7 +23,27 @@ concurrency:
 jobs:
   # Update last_update.md
   update_last_update_date:
-    uses: ./.github/workflows/update-last-update-date.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Update last_update.md
+        run: |
+          echo "# Last update
+
+          \`$(date)\`
+          " > last_update.md
+      - name: Push
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m 'Update last_update.md'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # Build job
   build:
     runs-on: ubuntu-latest
