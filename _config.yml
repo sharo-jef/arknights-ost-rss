@@ -1,0 +1,47 @@
+remote_theme: just-the-docs/just-the-docs
+title: Arknights OST RSS
+description: Arknights OST RSS
+color_scheme: dark
+mermaid:
+  version: 9.1.3
+aux_links:
+  'Arknights OST RSS':
+    - https://github.com/sharo-jef/arknights-ost-rss
+aux_links_new_tab: true
+back_to_top: true
+back_to_top_text: "Back to top"
+gh_edit_link: true
+gh_edit_link_text: Edit this page on GitHub.
+gh_edit_repository: https://github.com/sharo-jef/arknights-ost-rss
+gh_edit_branch: master
+gh_edit_view_mode: tree
+enable_copy_code_button: true
+compress_html:
+  ignore:
+    envs: all
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  info:
+    title: Info
+    color: blue
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+  danger:
+    title: Danger
+    color: red
