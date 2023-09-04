@@ -36,26 +36,17 @@ jobs:
           set +e
           diff rss.txt api.txt
           echo "result=$?" >> "$GITHUB_OUTPUT"
-  deploy:
-    needs:
-      - update
-    if: ${{ needs.update.outputs.result == 1 }}
-    uses: ./.github/workflows/jekyll-gh-pages.yml
+  # これがないと60日で止まる
   update_last_update_date:
     needs: update
-    if: ${{ needs.update.outputs.result == 0 }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Update last_update.md
-        run: |
-          echo "# Last update
-
-          \`$(date)\`
-          " > last_update.md
+      - name: Update last_update.txt
+        run: date > last_update.txt
       - name: Push
         run: |
           git config --local user.name "github-actions[bot]"
@@ -64,3 +55,9 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    needs:
+      - update
+      - update_last_update_date
+    if: ${{ needs.update.outputs.result == 1 }}
+    uses: ./.github/workflows/jekyll-gh-pages.yml
