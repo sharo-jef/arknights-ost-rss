@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "axios": "^1.6.7",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.4",
     "eslint-plugin-import": "^2.29.1",
     "rss": "^1.2.2"
   },
