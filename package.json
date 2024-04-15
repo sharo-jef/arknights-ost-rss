@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.5",
+    "@types/node": "^20.12.7",
     "eslint": "^9.0.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-jest": "^28.2.0",
